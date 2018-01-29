@@ -1,0 +1,86 @@
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmSelector.resources
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\obj\Debug\Mobile_July.Properties.Resources.resources
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\obj\Debug\Mobile_July.csproj.GenerateResource.Cache
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\bin\Debug\Mobile_July.exe
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\bin\Debug\Mobile_July.pdb
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\obj\Debug\Mobile_July.exe
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\obj\Debug\Mobile_July.pdb
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\bin\Debug\MobileSales.sdf
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmCustomers.resources
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\bin\Debug\MobileSales.sdf
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\bin\Debug\Mobile_July.exe
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\bin\Debug\Mobile_July.pdb
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmCustomers.resources
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmSelector.resources
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\obj\Debug\Mobile_July.Properties.Resources.resources
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\obj\Debug\Mobile_July.csproj.GenerateResource.Cache
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\obj\Debug\Mobile_July.exe
+C:\Documents and Settings\Asus\Desktop\Mobile_July\Mobile_July\obj\Debug\Mobile_July.pdb
+D:\Personal\Mobile_July\Mobile_July\bin\Debug\MobileSales.sdf
+D:\Personal\Mobile_July\Mobile_July\bin\Debug\Mobile_July.exe
+D:\Personal\Mobile_July\Mobile_July\bin\Debug\Mobile_July.pdb
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\ResolveAssemblyReference.cache
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmBills.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmCustomers.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmSelector.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\Mobile_July.Properties.Resources.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\Mobile_July.csproj.GenerateResource.Cache
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\Mobile_July.exe
+D:\Personal\Mobile_July\Mobile_July\obj\Debug\Mobile_July.pdb
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\MobileSales.sdf
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Mobile_July.exe
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Mobile_July.pdb
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\ResolveAssemblyReference.cache
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmBills.resources
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmCustomers.resources
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.FrmItemsCar.resources
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmSelector.resources
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.Properties.Resources.resources
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.csproj.GenerateResource.Cache
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.exe
+C:\PR2\New\Mobile_July\Mobile_July\obj\Debug\Mobile_July.pdb
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.Status.dll
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.dll
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.PocketOutlook.dll
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.xml
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.Status.xml
+C:\PR2\New\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.PocketOutlook.xml
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\MobileSales.sdf
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Mobile_July.exe
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Mobile_July.pdb
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.Status.dll
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.dll
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.PocketOutlook.dll
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.xml
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.Status.xml
+C:\PR2\New1\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.PocketOutlook.xml
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\ResolveAssemblyReference.cache
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmBills.resources
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmCustomers.resources
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.FrmItemsCar.resources
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmSelector.resources
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.Properties.Resources.resources
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.csproj.GenerateResource.Cache
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.exe
+C:\PR2\New1\Mobile_July\Mobile_July\obj\Debug\Mobile_July.pdb
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\MobileSales.sdf
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Mobile_July.exe
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Mobile_July.pdb
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.Status.dll
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.dll
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.PocketOutlook.dll
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.xml
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.Status.xml
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\bin\Debug\Microsoft.WindowsMobile.PocketOutlook.xml
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\ResolveAssemblyReference.cache
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmBills.resources
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmCustomers.resources
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.FrmItemsCar.resources
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.frmSelector.resources
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.Properties.Resources.resources
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.test.resources
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.csproj.GenerateResource.Cache
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.exe
+C:\PR2\New1\Mobile_July8_9\Mobile_July\Mobile_July\obj\Debug\Mobile_July.pdb

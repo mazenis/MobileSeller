@@ -1,0 +1,11 @@
+D:\Personal\Mobile_July\Mobile_July\bin\Release\MobileSales.sdf
+D:\Personal\Mobile_July\Mobile_July\bin\Release\Mobile_July.exe
+D:\Personal\Mobile_July\Mobile_July\bin\Release\Mobile_July.pdb
+D:\Personal\Mobile_July\Mobile_July\obj\Release\ResolveAssemblyReference.cache
+D:\Personal\Mobile_July\Mobile_July\obj\Release\Mobile_July.frmBills.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Release\Mobile_July.frmCustomers.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Release\Mobile_July.frmSelector.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Release\Mobile_July.Properties.Resources.resources
+D:\Personal\Mobile_July\Mobile_July\obj\Release\Mobile_July.csproj.GenerateResource.Cache
+D:\Personal\Mobile_July\Mobile_July\obj\Release\Mobile_July.exe
+D:\Personal\Mobile_July\Mobile_July\obj\Release\Mobile_July.pdb

@@ -1,0 +1,1226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="MobileSales" Class="dbDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ALAA1;Initial Catalog=MobileSales;Integrated Security=True" SettingsObjectName="db_BLL.Properties.Settings" SettingsPropertyName="MobileSalesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Action_Log" Member="Action_Logs">
+    <Type Name="Action_Log">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Section_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IS_Mobile" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Related_Object_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Operation" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Control_Section_Action_Log" Member="Control_Section" ThisKey="Section_ID" Type="Control_Section" IsForeignKey="true" />
+      <Association Name="User_Action_Log" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users_Types" Member="Users_Types">
+    <Type Name="Users_Type">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Users_Type_User" Member="Users" OtherKey="User_Type_ID" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Area" Member="Areas">
+    <Type Name="Area">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Area_Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="X_LOC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Y_LOC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Map_URL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Area_Customers_Location" Member="Customers_Locations" OtherKey="Area_ID" Type="Customers_Location" />
+      <Association Name="Area_Department" Member="Departments" OtherKey="Area_ID" Type="Department" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Category_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Parent_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IS_ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="level_depth" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Category_Stores_Item" Member="Stores_Items" OtherKey="Category_ID" Type="Stores_Item" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Control_Sections" Member="Control_Sections">
+    <Type Name="Control_Section">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Section_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IS_MOBILE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Control_Section_Action_Log" Member="Action_Logs" OtherKey="Section_ID" Type="Action_Log" />
+      <Association Name="Control_Section_Users_Permission" Member="Users_Permissions" OtherKey="Section_ID" Type="Users_Permission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customer_Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date_Added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Can_Sale" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_DELETED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LOCATION_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Related_User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Send_Balance_Newsletter" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Unique_Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Customer_Customers_Bill" Member="Customers_Bills" OtherKey="Customer_ID" Type="Customers_Bill" />
+      <Association Name="Customer_Customers_Group1" Member="Customers_Group1s" OtherKey="Customer_ID" Type="Customers_Group1" />
+      <Association Name="Customer_Customers_Location" Member="Customers_Locations" OtherKey="Customer_ID" Type="Customers_Location" />
+      <Association Name="Customer_Navigation_Customer" Member="Navigation_Customers" OtherKey="Customer_ID" Type="Navigation_Customer" />
+      <Association Name="Customer_Payments_Detail" Member="Payments_Details" OtherKey="Customer_ID" Type="Payments_Detail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers_Bills" Member="Customers_Bills">
+    <Type Name="Customers_Bill">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bill_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IS_PAID" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_DELIVERED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_CANCELED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Unique_Bill_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bill_Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Bill_Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IS_ORDER" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Customers_Bill_Customers_Bills_Detail" Member="Customers_Bills_Details" OtherKey="Bill_ID" Type="Customers_Bills_Detail" />
+      <Association Name="Customer_Customers_Bill" Member="Customer" ThisKey="Customer_ID" Type="Customer" IsForeignKey="true" />
+      <Association Name="User_Customers_Bill" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers_Bills_Details" Member="Customers_Bills_Details">
+    <Type Name="Customers_Bills_Detail">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Bill_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Customers_Bill_Customers_Bills_Detail" Member="Customers_Bill" ThisKey="Bill_ID" Type="Customers_Bill" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers_Group" Member="Customers_Groups">
+    <Type Name="Customers_Group">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Group_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="max_balance_limit" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="Customers_Group_Customers_Group1" Member="Customers_Group1s" OtherKey="Customer_Group_ID" Type="Customers_Group1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers_Groups" Member="Customers_Group1s">
+    <Type Name="Customers_Group1">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customer_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Customer_Customers_Group1" Member="Customer" ThisKey="Customer_ID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customers_Group_Customers_Group1" Member="Customers_Group" ThisKey="Customer_Group_ID" Type="Customers_Group" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers_Locations" Member="Customers_Locations">
+    <Type Name="Customers_Location">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Area_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Location_Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="X_LOC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Y_LOC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Map_URL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Area_Customers_Location" Member="Area" ThisKey="Area_ID" Type="Area" IsForeignKey="true" />
+      <Association Name="Customer_Customers_Location" Member="Customer" ThisKey="Customer_ID" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Departments" Member="Departments">
+    <Type Name="Department">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Department_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Area_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="X_LOC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Y_LOC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Department_User" Member="Users" OtherKey="Department_ID" Type="User" />
+      <Association Name="Area_Department" Member="Area" ThisKey="Area_ID" Type="Area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Discounts" Member="Discounts">
+    <Type Name="Discount">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Discount_Percent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="From_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="To_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IS_ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Unique_Discount_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Customers_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Item_Discount" Member="Item" ThisKey="Item_ID" Type="Item" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item_Properties" Member="Item_Properties">
+    <Type Name="Item_Property">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_Property" Member="Item_Property1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Item_Property_Items_Property" Member="Items_Properties" OtherKey="Property_ID" Type="Items_Property" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Items" Member="Items">
+    <Type Name="Item">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Provider_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IS_AVAILABLE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_DELETED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Unique_Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Item_Discount" Member="Discounts" OtherKey="Item_ID" Type="Discount" />
+      <Association Name="Item_Items_Property" Member="Items_Properties" OtherKey="Item_ID" Type="Items_Property" />
+      <Association Name="Item_Items_Provider" Member="Items_Providers" OtherKey="Item_ID" Type="Items_Provider" />
+      <Association Name="Item_Promotion" Member="Promotions" OtherKey="Item_ID" Type="Promotion" />
+      <Association Name="Item_Salesman_Store" Member="Salesman_Stores" OtherKey="Item_ID" Type="Salesman_Store" />
+      <Association Name="Item_Stores_Item" Member="Stores_Items" OtherKey="Item_ID" Type="Stores_Item" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Items_Properties" Member="Items_Properties">
+    <Type Name="Items_Property">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Property_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Item_Property_Items_Property" Member="Item_Property" ThisKey="Property_ID" Type="Item_Property" IsForeignKey="true" />
+      <Association Name="Item_Items_Property" Member="Item" ThisKey="Item_ID" Type="Item" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Items_Providers" Member="Items_Providers">
+    <Type Name="Items_Provider">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Providers_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Item_Items_Provider" Member="Item" ThisKey="Item_ID" Type="Item" IsForeignKey="true" />
+      <Association Name="Provider_Items_Provider" Member="Provider" ThisKey="Providers_ID" Type="Provider" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Max_Balance_Limitation" Member="Max_Balance_Limitations">
+    <Type Name="Max_Balance_Limitation">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Max_Limit" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Navigation_Customers" Member="Navigation_Customers">
+    <Type Name="Navigation_Customer">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Navigation_Route_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Customer_Navigation_Customer" Member="Customer" ThisKey="Customer_ID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Navigations_Route_Navigation_Customer" Member="Navigations_Route" ThisKey="Navigation_Route_ID" Type="Navigations_Route" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Navigation_Types" Member="Navigation_Types">
+    <Type Name="Navigation_Type">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Navigation_Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Navigation_Type_Navigations_Route" Member="Navigations_Routes" OtherKey="Navigation_Type_ID" Type="Navigations_Route" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Navigations_Routes" Member="Navigations_Routes">
+    <Type Name="Navigations_Route">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Navigation_Type_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Navigations_Route_Navigation_Customer" Member="Navigation_Customers" OtherKey="Navigation_Route_ID" Type="Navigation_Customer" />
+      <Association Name="Navigation_Type_Navigations_Route" Member="Navigation_Type" ThisKey="Navigation_Type_ID" Type="Navigation_Type" IsForeignKey="true" />
+      <Association Name="User_Navigations_Route" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment_Currencies" Member="Payment_Currencies">
+    <Type Name="Payment_Currency">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Payment_Currency" Member="Payment_Currency1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PayExtension" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FlagImg" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Payment_Currency_Payments_Detail" Member="Payments_Details" OtherKey="Payment_Currency_ID" Type="Payments_Detail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payments_Details" Member="Payments_Details">
+    <Type Name="Payments_Detail">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Payment_type_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Payment_Currency_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Payment_Amount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Payment_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Customer_Payments_Detail" Member="Customer" ThisKey="Customer_ID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Payment_Currency_Payments_Detail" Member="Payment_Currency" ThisKey="Payment_Currency_ID" Type="Payment_Currency" IsForeignKey="true" />
+      <Association Name="Payments_Type_Payments_Detail" Member="Payments_Type" ThisKey="Payment_type_ID" Type="Payments_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payments_Types" Member="Payments_Types">
+    <Type Name="Payments_Type">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Payment_type" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Payments_Type_Payments_Detail" Member="Payments_Details" OtherKey="Payment_type_ID" Type="Payments_Detail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Promotions" Member="Promotions">
+    <Type Name="Promotion">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Total_Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="From_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="To_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IS_ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Unique_Promotion_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Customers_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Item_Promotion" Member="Item" ThisKey="Item_ID" Type="Item" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Providers" Member="Providers">
+    <Type Name="Provider">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Provider_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Provider_Items_Provider" Member="Items_Providers" OtherKey="Providers_ID" Type="Items_Provider" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Salesman_Store" Member="Salesman_Stores">
+    <Type Name="Salesman_Store">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Delivery_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="User_Vehicle_Number" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Item_Salesman_Store" Member="Item" ThisKey="Item_ID" Type="Item" IsForeignKey="true" />
+      <Association Name="User_Salesman_Store" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Salesman_Visits" Member="Salesman_Visits">
+    <Type Name="Salesman_Visit">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Visit_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Unique_Visit_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="User_Salesman_Visit" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Stores" Member="Stores">
+    <Type Name="Store">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Store_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Store_Stores_Item" Member="Stores_Items" OtherKey="Store_ID" Type="Stores_Item" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Stores_Items" Member="Stores_Items">
+    <Type Name="Stores_Item">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Store_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Category_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Item_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Category_Stores_Item" Member="Category" ThisKey="Category_ID" Type="Category" IsForeignKey="true" />
+      <Association Name="Item_Stores_Item" Member="Item" ThisKey="Item_ID" Type="Item" IsForeignKey="true" />
+      <Association Name="Store_Stores_Item" Member="Store" ThisKey="Store_ID" Type="Store" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Suggested_Clients" Member="Suggested_Clients">
+    <Type Name="Suggested_Client">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customer_Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date_Added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LOCATION_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Related_User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Send_Balance_Newsletter" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_Type_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Department_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="User_Title" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Organization" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Join_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Unique_User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IS_ACTIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="User_Action_Log" Member="Action_Logs" OtherKey="User_ID" Type="Action_Log" />
+      <Association Name="User_Customers_Bill" Member="Customers_Bills" OtherKey="User_ID" Type="Customers_Bill" />
+      <Association Name="User_Navigations_Route" Member="Navigations_Routes" OtherKey="User_ID" Type="Navigations_Route" />
+      <Association Name="User_Salesman_Store" Member="Salesman_Stores" OtherKey="User_ID" Type="Salesman_Store" />
+      <Association Name="User_Salesman_Visit" Member="Salesman_Visits" OtherKey="User_ID" Type="Salesman_Visit" />
+      <Association Name="User_Users_Car" Member="Users_Cars" OtherKey="User_ID" Type="Users_Car" />
+      <Association Name="User_Users_Days_Off" Member="Users_Days_Offs" OtherKey="User_ID" Type="Users_Days_Off" />
+      <Association Name="User_Users_Payment" Member="Users_Payments" OtherKey="User_ID" Type="Users_Payment" />
+      <Association Name="User_Users_Permission" Member="Users_Permissions" OtherKey="User_ID" Type="Users_Permission" />
+      <Association Name="Department_User" Member="Department" ThisKey="Department_ID" Type="Department" IsForeignKey="true" />
+      <Association Name="Users_Type_User" Member="Users_Type" ThisKey="User_Type_ID" Type="Users_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users_Cars" Member="Users_Cars">
+    <Type Name="Users_Car">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Delivery_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Car_Vehicle_Number" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="User_Users_Car" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users_Days_Off" Member="Users_Days_Offs">
+    <Type Name="Users_Days_Off">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="From_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="To_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_Users_Days_Off" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users_Payments" Member="Users_Payments">
+    <Type Name="Users_Payment">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="From_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="To_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Entry_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IS_Award" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_Salary" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_Discount" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_Expense" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="User_Users_Payment" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users_Permissions" Member="Users_Permissions">
+    <Type Name="Users_Permission">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Section_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CAN_VIEW" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CAN_ADD" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CAN_EDIT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CAN_DELETE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Control_Section_Users_Permission" Member="Control_Section" ThisKey="Section_ID" Type="Control_Section" IsForeignKey="true" />
+      <Association Name="User_Users_Permission" Member="User" ThisKey="User_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Action_Log_Delete" Method="Action_Log_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Update" Method="Users_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_Type_ID" Parameter="user_Type_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Department_ID" Parameter="department_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_Title" Parameter="user_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Position" Parameter="position" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Organization" Parameter="organization" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Join_Date" Parameter="join_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="username" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="password" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_User_ID" Parameter="unique_User_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Action_Log_Insert" Method="Action_Log_Insert">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Section_ID" Parameter="section_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IS_Mobile" Parameter="iS_Mobile" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Related_Object_ID" Parameter="related_Object_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Operation" Parameter="operation" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Action_Log_Update" Method="Action_Log_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Section_ID" Parameter="section_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IS_Mobile" Parameter="iS_Mobile" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Related_Object_ID" Parameter="related_Object_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Operation" Parameter="operation" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Area_Delete" Method="Area_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Area_Insert" Method="Area_Insert">
+    <Parameter Name="Area_Title" Parameter="area_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="X_LOC" Parameter="x_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Y_LOC" Parameter="y_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Map_URL" Parameter="map_URL" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Area_Update" Method="Area_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Area_Title" Parameter="area_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="X_LOC" Parameter="x_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Y_LOC" Parameter="y_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Map_URL" Parameter="map_URL" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Category_Delete" Method="Category_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Category_Insert" Method="Category_Insert">
+    <Parameter Name="Category_Name" Parameter="category_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Parent_ID" Parameter="parent_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="level_depth" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Category_Update" Method="Category_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Category_Name" Parameter="category_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Parent_ID" Parameter="parent_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="level_depth" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Control_Sections_Delete" Method="Control_Sections_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Control_Sections_Insert" Method="Control_Sections_Insert">
+    <Parameter Name="Section_name" Parameter="section_name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="IS_MOBILE" Parameter="iS_MOBILE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Control_Sections_Update" Method="Control_Sections_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Section_name" Parameter="section_name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="IS_MOBILE" Parameter="iS_MOBILE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Bills_Delete" Method="Customers_Bills_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Bills_Details_Delete" Method="Customers_Bills_Details_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Bills_Details_Insert" Method="Customers_Bills_Details_Insert">
+    <Parameter Name="Bill_ID" Parameter="bill_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Price" Parameter="price" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Bills_Details_Update" Method="Customers_Bills_Details_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Bill_ID" Parameter="bill_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Price" Parameter="price" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Bills_Insert" Method="Customers_Bills_Insert">
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Bill_Date" Parameter="bill_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_PAID" Parameter="iS_PAID" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_DELIVERED" Parameter="iS_DELIVERED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_CANCELED" Parameter="iS_CANCELED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Bill_ID" Parameter="unique_Bill_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Bill_Status" Parameter="bill_Status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Bill_Type" Parameter="bill_Type" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IS_ORDER" Parameter="iS_ORDER" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Bills_Update" Method="Customers_Bills_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Bill_Date" Parameter="bill_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_PAID" Parameter="iS_PAID" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_DELIVERED" Parameter="iS_DELIVERED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_CANCELED" Parameter="iS_CANCELED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Bill_ID" Parameter="unique_Bill_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Bill_Status" Parameter="bill_Status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Bill_Type" Parameter="bill_Type" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IS_ORDER" Parameter="iS_ORDER" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Delete" Method="Customers_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Group_Delete" Method="Customers_Group_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Group_Insert" Method="Customers_Group_Insert">
+    <Parameter Name="Group_Name" Parameter="group_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="max_balance_limit" Type="System.Decimal" DbType="Decimal" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Group_Update" Method="Customers_Group_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Group_Name" Parameter="group_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="max_balance_limit" Type="System.Decimal" DbType="Decimal" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Groups_Delete" Method="Customers_Groups_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Groups_Insert" Method="Customers_Groups_Insert">
+    <Parameter Name="Customer_Group_ID" Parameter="customer_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Groups_Update" Method="Customers_Groups_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_Group_ID" Parameter="customer_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Insert" Method="Customers_Insert">
+    <Parameter Name="Customer_Title" Parameter="customer_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Fullname" Parameter="fullname" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Date_Added" Parameter="date_Added" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Can_Sale" Parameter="can_Sale" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_DELETED" Parameter="iS_DELETED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LOCATION_ID" Parameter="lOCATION_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Related_User_ID" Parameter="related_User_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Send_Balance_Newsletter" Parameter="send_Balance_Newsletter" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Customer_ID" Parameter="unique_Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Locations_Delete" Method="Customers_Locations_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Locations_Insert" Method="Customers_Locations_Insert">
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Area_ID" Parameter="area_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Location_Title" Parameter="location_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="X_LOC" Parameter="x_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Y_LOC" Parameter="y_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Map_URL" Parameter="map_URL" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Locations_Update" Method="Customers_Locations_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Area_ID" Parameter="area_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Location_Title" Parameter="location_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="X_LOC" Parameter="x_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Y_LOC" Parameter="y_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Map_URL" Parameter="map_URL" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Customers_Update" Method="Customers_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_Title" Parameter="customer_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Fullname" Parameter="fullname" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Date_Added" Parameter="date_Added" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Can_Sale" Parameter="can_Sale" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_DELETED" Parameter="iS_DELETED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LOCATION_ID" Parameter="lOCATION_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Related_User_ID" Parameter="related_User_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Send_Balance_Newsletter" Parameter="send_Balance_Newsletter" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Customer_ID" Parameter="unique_Customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Departments_Delete" Method="Departments_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Departments_Insert" Method="Departments_Insert">
+    <Parameter Name="Department_Name" Parameter="department_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Area_ID" Parameter="area_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="X_LOC" Parameter="x_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Y_LOC" Parameter="y_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Departments_Update" Method="Departments_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Department_Name" Parameter="department_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Area_ID" Parameter="area_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="X_LOC" Parameter="x_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Y_LOC" Parameter="y_LOC" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Discounts_Delete" Method="Discounts_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Discounts_Insert" Method="Discounts_Insert">
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Discount_Percent" Parameter="discount_Percent" Type="System.Int32" DbType="Int" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Discount_ID" Parameter="unique_Discount_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customers_Group_ID" Parameter="customers_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Discounts_Update" Method="Discounts_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Discount_Percent" Parameter="discount_Percent" Type="System.Int32" DbType="Int" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Discount_ID" Parameter="unique_Discount_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customers_Group_ID" Parameter="customers_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Item_Properties_Delete" Method="Item_Properties_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Item_Properties_Insert" Method="Item_Properties_Insert">
+    <Parameter Name="Item_Property" Parameter="item_Property" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Item_Properties_Update" Method="Item_Properties_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_Property" Parameter="item_Property" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Delete" Method="Items_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Insert" Method="Items_Insert">
+    <Parameter Name="Provider_ID" Parameter="provider_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Price" Parameter="price" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="IS_AVAILABLE" Parameter="iS_AVAILABLE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_DELETED" Parameter="iS_DELETED" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Properties_Delete" Method="Items_Properties_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Properties_Insert" Method="Items_Properties_Insert">
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Property_ID" Parameter="property_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Properties_Update" Method="Items_Properties_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Property_ID" Parameter="property_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Providers_Delete" Method="Items_Providers_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Providers_Insert" Method="Items_Providers_Insert">
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Providers_ID" Parameter="providers_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Providers_Update" Method="Items_Providers_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Providers_ID" Parameter="providers_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Items_Update" Method="Items_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Provider_ID" Parameter="provider_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Price" Parameter="price" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="IS_AVAILABLE" Parameter="iS_AVAILABLE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_DELETED" Parameter="iS_DELETED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Item_ID" Parameter="unique_Item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Max_Balance_Limitation_Delete" Method="Max_Balance_Limitation_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Max_Balance_Limitation_Insert" Method="Max_Balance_Limitation_Insert">
+    <Parameter Name="Max_Limit" Parameter="max_Limit" Type="System.Decimal" DbType="Decimal" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Max_Balance_Limitation_Update" Method="Max_Balance_Limitation_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Max_Limit" Parameter="max_Limit" Type="System.Decimal" DbType="Decimal" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigation_Customers_Delete" Method="Navigation_Customers_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigation_Customers_Insert" Method="Navigation_Customers_Insert">
+    <Parameter Name="Navigation_Route_ID" Parameter="navigation_Route_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigation_Customers_Update" Method="Navigation_Customers_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Navigation_Route_ID" Parameter="navigation_Route_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigation_Types_Delete" Method="Navigation_Types_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigation_Types_Insert" Method="Navigation_Types_Insert">
+    <Parameter Name="Navigation_Title" Parameter="navigation_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigation_Types_Update" Method="Navigation_Types_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Navigation_Title" Parameter="navigation_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigations_Routes_Delete" Method="Navigations_Routes_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigations_Routes_Insert" Method="Navigations_Routes_Insert">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Navigation_Type_ID" Parameter="navigation_Type_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Navigations_Routes_Update" Method="Navigations_Routes_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Navigation_Type_ID" Parameter="navigation_Type_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payment_Currencies_Delete" Method="Payment_Currencies_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payment_Currencies_Insert" Method="Payment_Currencies_Insert">
+    <Parameter Name="Payment_Currency" Parameter="payment_Currency" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="PayExtension" Parameter="payExtension" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="FlagImg" Parameter="flagImg" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payment_Currencies_Update" Method="Payment_Currencies_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_Currency" Parameter="payment_Currency" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="PayExtension" Parameter="payExtension" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="FlagImg" Parameter="flagImg" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payments_Details_Delete" Method="Payments_Details_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payments_Details_Insert" Method="Payments_Details_Insert">
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_type_ID" Parameter="payment_type_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_Currency_ID" Parameter="payment_Currency_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_Amount" Parameter="payment_Amount" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="Payment_Date" Parameter="payment_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payments_Details_Update" Method="Payments_Details_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_type_ID" Parameter="payment_type_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_Currency_ID" Parameter="payment_Currency_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_Amount" Parameter="payment_Amount" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="Payment_Date" Parameter="payment_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payments_Types_Delete" Method="Payments_Types_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payments_Types_Insert" Method="Payments_Types_Insert">
+    <Parameter Name="Payment_type" Parameter="payment_type" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Payments_Types_Update" Method="Payments_Types_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Payment_type" Parameter="payment_type" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Promotions_Delete" Method="Promotions_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Promotions_Insert" Method="Promotions_Insert">
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Total_Price" Parameter="total_Price" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Promotion_ID" Parameter="unique_Promotion_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customers_Group_ID" Parameter="customers_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Promotions_Update" Method="Promotions_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Total_Price" Parameter="total_Price" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Promotion_ID" Parameter="unique_Promotion_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customers_Group_ID" Parameter="customers_Group_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Providers_Delete" Method="Providers_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Providers_Insert" Method="Providers_Insert">
+    <Parameter Name="Provider_Name" Parameter="provider_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Website" Parameter="website" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Providers_Update" Method="Providers_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Provider_Name" Parameter="provider_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Website" Parameter="website" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Salesman_Store_Delete" Method="Salesman_Store_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Salesman_Store_Insert" Method="Salesman_Store_Insert">
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Delivery_Date" Parameter="delivery_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="User_Vehicle_Number" Parameter="user_Vehicle_Number" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Salesman_Store_Update" Method="Salesman_Store_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Delivery_Date" Parameter="delivery_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="User_Vehicle_Number" Parameter="user_Vehicle_Number" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Salesman_Visits_Delete" Method="Salesman_Visits_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Salesman_Visits_Insert" Method="Salesman_Visits_Insert">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Visit_Date" Parameter="visit_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Visit_ID" Parameter="unique_Visit_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Salesman_Visits_Update" Method="Salesman_Visits_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_ID" Parameter="customer_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Visit_Date" Parameter="visit_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Unique_Visit_ID" Parameter="unique_Visit_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Stores_Delete" Method="Stores_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Stores_Insert" Method="Stores_Insert">
+    <Parameter Name="Store_Name" Parameter="store_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Stores_Items_Delete" Method="Stores_Items_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Stores_Items_Insert" Method="Stores_Items_Insert">
+    <Parameter Name="Store_ID" Parameter="store_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Category_ID" Parameter="category_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Stores_Items_Update" Method="Stores_Items_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Store_ID" Parameter="store_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Category_ID" Parameter="category_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Item_ID" Parameter="item_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Stores_Update" Method="Stores_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Store_Name" Parameter="store_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Suggested_Clients_Delete" Method="Suggested_Clients_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Suggested_Clients_Insert" Method="Suggested_Clients_Insert">
+    <Parameter Name="Customer_Title" Parameter="customer_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Fullname" Parameter="fullname" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Date_Added" Parameter="date_Added" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="LOCATION_ID" Parameter="lOCATION_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Related_User_ID" Parameter="related_User_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Send_Balance_Newsletter" Parameter="send_Balance_Newsletter" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Suggested_Clients_Update" Method="Suggested_Clients_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Customer_Title" Parameter="customer_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Fullname" Parameter="fullname" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Date_Added" Parameter="date_Added" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="LOCATION_ID" Parameter="lOCATION_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Related_User_ID" Parameter="related_User_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Send_Balance_Newsletter" Parameter="send_Balance_Newsletter" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_ACKNOWLEDGE" Parameter="iS_ACKNOWLEDGE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Cars_Delete" Method="Users_Cars_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Cars_Insert" Method="Users_Cars_Insert">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Delivery_Date" Parameter="delivery_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Car_Vehicle_Number" Parameter="car_Vehicle_Number" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Cars_Update" Method="Users_Cars_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Delivery_Date" Parameter="delivery_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Car_Vehicle_Number" Parameter="car_Vehicle_Number" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Days_Off_Delete" Method="Users_Days_Off_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Days_Off_Insert" Method="Users_Days_Off_Insert">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Days_Off_Update" Method="Users_Days_Off_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Delete" Method="Users_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Insert" Method="Users_Insert">
+    <Parameter Name="User_Type_ID" Parameter="user_Type_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Department_ID" Parameter="department_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_Title" Parameter="user_Title" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Position" Parameter="position" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Organization" Parameter="organization" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Join_Date" Parameter="join_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="username" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="password" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="IS_ACTIVE" Parameter="iS_ACTIVE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Payments_Delete" Method="Users_Payments_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Payments_Insert" Method="Users_Payments_Insert">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_Award" Parameter="iS_Award" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_Salary" Parameter="iS_Salary" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_Discount" Parameter="iS_Discount" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_Expense" Parameter="iS_Expense" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Payments_Update" Method="Users_Payments_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal" />
+    <Parameter Name="From_Date" Parameter="from_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="To_Date" Parameter="to_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Entry_Date" Parameter="entry_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IS_Award" Parameter="iS_Award" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_Salary" Parameter="iS_Salary" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_Discount" Parameter="iS_Discount" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IS_Expense" Parameter="iS_Expense" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Permissions_Delete" Method="Users_Permissions_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Permissions_Insert" Method="Users_Permissions_Insert">
+    <Parameter Name="Section_ID" Parameter="section_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="CAN_VIEW" Parameter="cAN_VIEW" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CAN_ADD" Parameter="cAN_ADD" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CAN_EDIT" Parameter="cAN_EDIT" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CAN_DELETE" Parameter="cAN_DELETE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Permissions_Update" Method="Users_Permissions_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Section_ID" Parameter="section_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="CAN_VIEW" Parameter="cAN_VIEW" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CAN_ADD" Parameter="cAN_ADD" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CAN_EDIT" Parameter="cAN_EDIT" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CAN_DELETE" Parameter="cAN_DELETE" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Types_Delete" Method="Users_Types_Delete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Types_Insert" Method="Users_Types_Insert">
+    <Parameter Name="Type" Parameter="type" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Users_Types_Update" Method="Users_Types_Update">
+    <Parameter Name="ID" Parameter="iD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Type" Parameter="type" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

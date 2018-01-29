@@ -1,0 +1,6 @@
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mob_BLL\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mob_BLL\bin\Debug\Mob_BLL.dll.config
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mob_BLL\bin\Debug\Mob_BLL.dll
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mob_BLL\bin\Debug\Mob_BLL.pdb
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mob_BLL\obj\Debug\Mob_BLL.dll
+C:\Documents and Settings\SVU\My Documents\Visual Studio 2008\Projects\Mobile_July\Mob_BLL\obj\Debug\Mob_BLL.pdb
